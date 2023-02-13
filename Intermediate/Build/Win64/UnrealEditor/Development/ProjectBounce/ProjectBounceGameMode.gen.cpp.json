@@ -1,0 +1,19 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "m:\\unreal\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\inc\\projectbounce\\projectbouncegamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "m:\\unreal\\projectbounce\\intermediate\\build\\win64\\projectbounceeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "m:\\unreal\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\development\\projectbounce\\definitions.projectbounce.h",
+            "m:\\unreal\\projectbounce\\source\\projectbounce\\projectbouncegamemode.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\gamemodebase.generated.h",
+            "m:\\unreal\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\inc\\projectbounce\\projectbouncegamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
