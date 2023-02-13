@@ -30,6 +30,7 @@
 *.blend1
 
 # Unreal temp files
+Binaries/
 Intermediate/
 Saved/
 ProjectBounce/Intermediate/
