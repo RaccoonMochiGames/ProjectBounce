@@ -1,63 +1,44 @@
-# Ignore project files in the root
-*.sln
-!*\*.sln
-.vs
-*.suo
-*.opensdf
-*.sdf
-*.pdb
-*-Debug.dll
-*.xcodeproj
-.\Makefile
-.\CMakeLists.txt
-.\.ue4dependencies
- 
-ipch\*
- 
-# Derived data cache should never be checked in
-Engine\DerivedDataCache\*
- 
-# Engine intermediates
-Engine\Intermediate\*
-Engine\Plugins\*\Intermediate\*
- 
-# Intermediate folders created for various C# programs
-Engine\Source\Programs\*\obj\*
- 
-# Saved folders for programs should not be checked in
-Engine\Programs\*\Saved\*
-Engine\Programs\UnrealBuildTool\*
- 
-# Intermediate folders for programs should not be checked in
-Engine\Programs\*\Intermediate\*
- 
-# Ignore any saved local files
-Engine\Saved\*
- 
-# Ignore any build receipts
-Engine\Build\Receipts\*
- 
-# Ignore Unix backup files
-*~
- 
-# Ignore Mac desktop services store files 
-.DS_Store
- 
-# Ignore crash reports
-crashinfo--*
- 
-# Ignore linux project files
-*.user
-*.pro
-*.pri
-*.kdev4
- 
-# Ignore project-specific files
-Binaries\*.pdb
-Binaries\*-Shipping.*
-Binaries\*
-Build\Receipts\*
-DerivedDataCache\*
-Intermediate\*
-Saved\*
-*.sln
+# Compiled Object files *.obj  .obj is a model file format I use sometimes
+*.slo
+*.lo
+*.o
+
+# Precompiled Headers will require recompiling with every pull if we work in the working directory so... have to think about this one the .pch is 500 mb
+*.gch
+*.pch
+
+# Compiled Dynamic libraries *.dll should need dlls for plugins
+*.so
+*.dylib
+
+# Fortran module files dont think well use fortran lol commenting this out *.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.out
+*.pp
+
+#Blender Simulations
+*.bphys
+
+# Blender Autosaves
+*.blend1
+
+# Unreal temp files
+Intermediate/
+Saved/
+ProjectBounce/Intermediate/
+ProjectBounce/Saved/
+
+# if this doesnt work may need to set the files weve already commmited int hose directorys (tracked) to untracked using files #tracked before can be untracked by running git rm --cached filename
+
+
+# Windows
+Thumbs.db
+*.log
+*.tmp
