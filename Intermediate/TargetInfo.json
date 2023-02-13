@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ProjectBounce",
+			"Path": "M:\\Unreal\\PROFPROJECT\\ProjectBounce\\Source\\ProjectBounce.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ProjectBounceEditor",
+			"Path": "M:\\Unreal\\PROFPROJECT\\ProjectBounce\\Source\\ProjectBounceEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

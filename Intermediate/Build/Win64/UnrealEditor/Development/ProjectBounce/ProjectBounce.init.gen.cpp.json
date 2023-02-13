@@ -1,0 +1,13 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\inc\\projectbounce\\projectbounce.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\projectbounceeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\development\\projectbounce\\definitions.projectbounce.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

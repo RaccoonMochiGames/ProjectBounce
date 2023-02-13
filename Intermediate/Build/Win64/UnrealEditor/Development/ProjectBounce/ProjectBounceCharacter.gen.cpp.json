@@ -1,0 +1,21 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\inc\\projectbounce\\projectbouncecharacter.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\projectbounceeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\development\\projectbounce\\definitions.projectbounce.h",
+            "m:\\unreal\\profproject\\projectbounce\\source\\projectbounce\\projectbouncecharacter.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\charactermovementreplication.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\rootmotionsource.generated.h",
+            "c:\\program files\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\character.generated.h",
+            "m:\\unreal\\profproject\\projectbounce\\intermediate\\build\\win64\\unrealeditor\\inc\\projectbounce\\projectbouncecharacter.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
