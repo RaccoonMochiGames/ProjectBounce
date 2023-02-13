@@ -55,6 +55,7 @@ crashinfo--*
 # Ignore project-specific files
 Binaries\*.pdb
 Binaries\*-Shipping.*
+Binaries\*
 Build\Receipts\*
 DerivedDataCache\*
 Intermediate\*
