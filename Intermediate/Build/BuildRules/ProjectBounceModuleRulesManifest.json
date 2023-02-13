@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"M:\\Unreal\\ProjectBounce\\Source\\ProjectBounce\\ProjectBounce.Build.cs",
-		"M:\\Unreal\\ProjectBounce\\Source\\ProjectBounce.Target.cs",
-		"M:\\Unreal\\ProjectBounce\\Source\\ProjectBounceEditor.Target.cs"
-	],
-	"EngineVersion": "5.0.3"
-}
