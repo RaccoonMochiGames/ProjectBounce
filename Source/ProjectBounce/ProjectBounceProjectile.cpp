@@ -38,6 +38,6 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 
-		Destroy();
+		//Destroy();
 	}
 }
