@@ -45,7 +45,9 @@ ProjectBounce/Saved/
 .vscode/**/*   # Maybe .vscode/**/* instead - see comments
 .vscode/c_cpp_properties.json
 .vscode/compileCommands_Default.json
+.vscode/compileCommands_Default/
 .vscode/compileCommands_ProjectBounce.json
+.vscode/compileCommands_ProjectBounce/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
