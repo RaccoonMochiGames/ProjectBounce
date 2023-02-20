@@ -26,7 +26,7 @@
 
 #Blender Simulations
 *.bphys
-
+*.code-workspace
 # Blender Autosaves
 *.blend1
 
@@ -38,7 +38,26 @@ ProjectBounce/Intermediate/
 ProjectBounce/Saved/
 
 .vs/ProjectBounce/
+# Created by https://www.gitignore.io/api/visualstudiocode
+# Edit at https://www.gitignore.io/?templates=visualstudiocode
 
+### VisualStudioCode ###
+.vscode/**/*   # Maybe .vscode/**/* instead - see comments
+.vscode/c_cpp_properties.json
+.vscode/compileCommands_Default.json
+.vscode/compileCommands_Default/
+.vscode/compileCommands_ProjectBounce.json
+.vscode/compileCommands_ProjectBounce/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
+# End of https://www.gitignore.io/api/visualstudiocode
 # if this doesnt work may need to set the files weve already commmited int hose directorys (tracked) to untracked using files #tracked before can be untracked by running git rm --cached filename
 
 
