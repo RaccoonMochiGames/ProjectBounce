@@ -28,7 +28,27 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	ProjectileMovement->bShouldBounce = true;
 
 	// Die after 3 seconds by default
-	InitialLifeSpan = 3.0f;
+	InitialLifeSpan = 0.0f;
+
+	// Custom projectile bounce variables
+	maxBounces = 5;
+
+}
+
+void AProjectBounceProjectile::Tick(float DeltaSeconds)
+{
+	if(currentBounces <= 0)
+	{		
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Destroying projectile"));
+		Destroy();
+	}
+}
+
+void AProjectBounceProjectile::BeginPlay()
+{
+	AActor::BeginPlay();
+
+	currentBounces = maxBounces;
 }
 
 void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -37,7 +57,8 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
-
-		//Destroy();
 	}
+
+	GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("CurrentBounces: x: %d"), currentBounces));
+	currentBounces--;
 }
