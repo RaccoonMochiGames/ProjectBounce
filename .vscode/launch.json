@@ -4,7 +4,7 @@
 		{
 			"name": "Launch ProjectBounce (Debug)",
 			"request": "launch",
-			"program": "M:\\Unreal\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+			"program": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
 			"preLaunchTask": "ProjectBounce Win64 Debug Build",
 			"args": [
 			],
@@ -20,7 +20,7 @@
 		{
 			"name": "Launch ProjectBounce (DebugGame)",
 			"request": "launch",
-			"program": "M:\\Unreal\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+			"program": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
 			"preLaunchTask": "ProjectBounce Win64 DebugGame Build",
 			"args": [
 			],
@@ -36,7 +36,7 @@
 		{
 			"name": "Launch ProjectBounce (Development)",
 			"request": "launch",
-			"program": "M:\\Unreal\\ProjectBounce\\Binaries\\Win64\\UnrealGame.exe",
+			"program": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Binaries\\Win64\\UnrealGame.exe",
 			"preLaunchTask": "ProjectBounce Win64 Development Build",
 			"args": [
 			],
@@ -52,7 +52,7 @@
 		{
 			"name": "Launch ProjectBounce (Test)",
 			"request": "launch",
-			"program": "M:\\Unreal\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+			"program": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
 			"preLaunchTask": "ProjectBounce Win64 Test Build",
 			"args": [
 			],
@@ -68,7 +68,7 @@
 		{
 			"name": "Launch ProjectBounce (Shipping)",
 			"request": "launch",
-			"program": "M:\\Unreal\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+			"program": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
 			"preLaunchTask": "ProjectBounce Win64 Shipping Build",
 			"args": [
 			],
@@ -87,7 +87,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
 			"preLaunchTask": "ProjectBounceEditor Win64 Debug Build",
 			"args": [
-				"M:\\Unreal\\ProjectBounce\\ProjectBounce.uproject"
+				"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\ProjectBounce.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -104,7 +104,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
 			"preLaunchTask": "ProjectBounceEditor Win64 DebugGame Build",
 			"args": [
-				"M:\\Unreal\\ProjectBounce\\ProjectBounce.uproject"
+				"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\ProjectBounce.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -121,7 +121,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
 			"preLaunchTask": "ProjectBounceEditor Win64 Development Build",
 			"args": [
-				"M:\\Unreal\\ProjectBounce\\ProjectBounce.uproject"
+				"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\ProjectBounce.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -140,7 +140,7 @@
 			"args": [
 				"-projectfiles",
 				"-vscode",
-				"-project=M:\\Unreal\\ProjectBounce\\ProjectBounce.uproject",
+				"-project=\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\ProjectBounce.uproject",
 				"-game",
 				"-engine"
 			],

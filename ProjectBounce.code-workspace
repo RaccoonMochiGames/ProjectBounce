@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"name": "ProjectBounce",
-			"path": "./Source/ProjectBounce"
+			"path": "."
 		},
 		{
 			"name": "UE5",
@@ -10,10 +10,7 @@
 		}
 	],
 	"settings": {
-		"typescript.tsc.autoDetect": "off",
-		"files.associations": {
-			"*.rh": "cpp"
-		}
+		"typescript.tsc.autoDetect": "off"
 	},
 	"extensions": {
 		"recommendations": [

@@ -1,5 +1,10 @@
 [
 	{
+		"file": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Source\\ProjectBounce\\.vscode\\c_cpp_properties.json",
+		"command": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe\" @\"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\.vscode\\compileCommands_ProjectBounce\\ProjectBounce.219.rsp\"",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
 		"file": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Source\\ProjectBounce\\ProjectBounce.Build.cs",
 		"command": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe\" @\"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\.vscode\\compileCommands_ProjectBounce\\ProjectBounce.219.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
@@ -41,6 +46,16 @@
 	},
 	{
 		"file": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Source\\ProjectBounce\\ProjectBounceProjectile.h",
+		"command": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe\" @\"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\.vscode\\compileCommands_ProjectBounce\\ProjectBounce.219.rsp\"",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Source\\ProjectBounce\\TennisBallMovementComponent.cpp",
+		"command": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe\" @\"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\.vscode\\compileCommands_ProjectBounce\\ProjectBounce.219.rsp\"",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\Source\\ProjectBounce\\TennisBallMovementComponent.h",
 		"command": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe\" @\"\\\\StuHomeEven\\HomeDrive6$\\2003256\\Unreal Projects\\ProjectBounce\\.vscode\\compileCommands_ProjectBounce\\ProjectBounce.219.rsp\"",
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
 	},

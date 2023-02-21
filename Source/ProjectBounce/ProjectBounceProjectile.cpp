@@ -6,6 +6,9 @@
 
 AProjectBounceProjectile::AProjectBounceProjectile() 
 {
+	// Stop projectile from destroying
+	InitialLifeSpan = 0.0f;
+
 	// Use a sphere as a simple collision representation
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(5.0f);
@@ -15,6 +18,8 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	// Players can't walk on it
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	CollisionComp->CanCharacterStepUpOn = ECB_No;
+
+	PrimaryActorTick.bCanEverTick = true;
 
 	// Set as root component
 	RootComponent = CollisionComp;
@@ -27,21 +32,10 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
-	// Die after 3 seconds by default
-	InitialLifeSpan = 0.0f;
-
 	// Custom projectile bounce variables
-	maxBounces = 5;
+	maxBounces = 0;
 
-}
-
-void AProjectBounceProjectile::Tick(float DeltaSeconds)
-{
-	if(currentBounces <= 0)
-	{		
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Destroying projectile"));
-		Destroy();
-	}
+	bRestState = false;
 }
 
 void AProjectBounceProjectile::BeginPlay()
@@ -51,14 +45,55 @@ void AProjectBounceProjectile::BeginPlay()
 	currentBounces = maxBounces;
 }
 
+void AProjectBounceProjectile::Tick(float DeltaSeconds)
+{
+
+
+
+}
+
 void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 	}
 
-	GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("CurrentBounces: x: %d"), currentBounces));
-	currentBounces--;
+	// only reduce bounces if it is hitting a flat surface
+	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
+	{
+		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: x: %d"), currentBounces));
+		currentBounces--;
+	}
+
+	if(currentBounces <= 0 && bRestState == false)
+	{		
+		EnterRestState();
+	}
+
+	if(bRestState)
+	{
+		// make it bounce in place
+		//ProjectileMovement->SetVelocityInLocalSpace(GetVelocity());
+		//ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 1000.0f));
+
+		ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 1000.0f));
+
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, GetVelocity().ToString());
+	}
+
+}
+
+void AProjectBounceProjectile::EnterRestState()
+{
+	bRestState = true;
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Entering rest state..."));
+
+	// stop the projectiles velocity
+	ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 0.0f));
+	
+	//Destroy();
 }
