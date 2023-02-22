@@ -1,6 +1,7 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\PlatformCrypto\Intermediate\Build\Win64\UnrealEditor\Development\PlatformCrypto\Definitions.PlatformCrypto.h" 
-/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
+/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\PlatformCrypto\Source\PlatformCrypto\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\PlatformCrypto\Intermediate\Build\Win64\UnrealEditor\Inc\PlatformCrypto" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\PlatformCrypto\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\PlatformCrypto\Source\PlatformCrypto\Public" 

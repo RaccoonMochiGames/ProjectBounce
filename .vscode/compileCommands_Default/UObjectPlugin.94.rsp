@@ -1,6 +1,7 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\UObjectPlugin\Intermediate\Build\Win64\UnrealEditor\Development\UObjectPlugin\Definitions.UObjectPlugin.h" 
-/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\CoreUObject\SharedPCH.CoreUObject.ShadowErrors.h" 
+/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\CoreUObject\SharedPCH.CoreUObject.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\UObjectPlugin\Source\UObjectPlugin\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\UObjectPlugin\Intermediate\Build\Win64\UnrealEditor\Inc\UObjectPlugin" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\UObjectPlugin\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\UObjectPlugin\Source\UObjectPlugin\Classes" 

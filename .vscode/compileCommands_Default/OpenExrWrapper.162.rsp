@@ -1,5 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Intermediate\Build\Win64\UnrealEditor\Development\OpenExrWrapper\PCH.OpenExrWrapper.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Source\OpenExrWrapper\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Intermediate\Build\Win64\UnrealEditor\Inc\OpenExrWrapper" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Source\OpenExrWrapper\Public" 

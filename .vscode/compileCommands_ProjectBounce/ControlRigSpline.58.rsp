@@ -1,6 +1,7 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Animation\ControlRigSpline\Intermediate\Build\Win64\UnrealEditor\Development\ControlRigSpline\Definitions.ControlRigSpline.h" 
-/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.NoUndef.h" 
+/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.NoUndef.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Animation\ControlRigSpline\Source\ControlRigSpline\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Animation\ControlRigSpline\Intermediate\Build\Win64\UnrealEditor\Inc\ControlRigSpline" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Animation\ControlRigSpline\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Animation\ControlRigSpline\Source\ControlRigSpline\Public" 

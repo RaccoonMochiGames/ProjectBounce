@@ -1,6 +1,7 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Intermediate\Build\Win64\UnrealEditor\Development\GeometryCacheEd\Definitions.GeometryCacheEd.h" 
-/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
+/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Source\GeometryCacheEd\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Intermediate\Build\Win64\UnrealEditor\Inc\GeometryCacheEd" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Source\GeometryCacheEd\Classes" 

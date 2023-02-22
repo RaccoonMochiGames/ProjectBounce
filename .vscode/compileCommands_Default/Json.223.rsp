@@ -1,6 +1,7 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Development\Json\Definitions.Json.h" 
-/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.TypeCastWarnings.h" 
+/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.TypeCastWarnings.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
+/I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\Json\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Json" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\Json\Public" 
