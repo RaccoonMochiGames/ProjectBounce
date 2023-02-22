@@ -33,7 +33,7 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	ProjectileMovement->bShouldBounce = true;
 
 	// Custom projectile bounce variables
-	maxBounces = 0;
+	maxBounces = 2;
 
 	bRestState = false;
 }
@@ -73,15 +73,22 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		EnterRestState();
 	}
 
+	if(currentBounces <= -5)
+	{		
+		Destroy();
+	}
+
 	if(bRestState)
 	{
 		// make it bounce in place
 		//ProjectileMovement->SetVelocityInLocalSpace(GetVelocity());
 		//ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 1000.0f));
 
-		ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 1000.0f));
+		//ProjectileMovement->AddForce(FVector(0.0f, 0.0f, 10000.0f));
 
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, GetVelocity().ToString());
+		ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 600.0f);
+
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, GetVelocity().ToString());
 	}
 
 }
@@ -94,6 +101,5 @@ void AProjectBounceProjectile::EnterRestState()
 
 	// stop the projectiles velocity
 	ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 0.0f));
-	
-	//Destroy();
+
 }
