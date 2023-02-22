@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Portal\LauncherChunkInstaller\Intermediate\Build\Win64\UnrealEditor\Development\LauncherChunkInstaller\Definitions.LauncherChunkInstaller.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Portal\LauncherChunkInstaller\Source\LauncherChunkInstaller\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Core" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\TraceLog\Public" 

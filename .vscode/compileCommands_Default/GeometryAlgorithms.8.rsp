@@ -1,5 +1,5 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryProcessing\Intermediate\Build\Win64\UnrealEditor\Development\GeometryAlgorithms\Definitions.GeometryAlgorithms.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Core\SharedPCH.Core.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryProcessing\Source\GeometryAlgorithms\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryProcessing\Intermediate\Build\Win64\UnrealEditor\Inc\GeometryAlgorithms" 

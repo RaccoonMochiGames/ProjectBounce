@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\PluginUtils\Intermediate\Build\Win64\UnrealEditor\Development\PluginUtils\Definitions.PluginUtils.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Developer\PluginUtils\Source\PluginUtils\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEd" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Editor" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Programs\UnrealLightmass\Public" 

@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Intermediate\Build\Win64\UnrealEditor\Development\GeometryCacheSequencer\Definitions.GeometryCacheSequencer.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\GeometryCache\Source\GeometryCacheSequencer\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\AssetTools" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Developer" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Developer\AssetTools\Public" 

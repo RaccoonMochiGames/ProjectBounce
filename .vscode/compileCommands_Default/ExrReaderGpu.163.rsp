@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Intermediate\Build\Win64\UnrealEditor\Development\ExrReaderGpu\Definitions.ExrReaderGpu.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Media\ImgMedia\Source\ExrReaderGpu\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEd" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Editor" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Programs\UnrealLightmass\Public" 

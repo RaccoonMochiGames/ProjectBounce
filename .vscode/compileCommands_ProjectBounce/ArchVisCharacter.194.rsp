@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\ArchVisCharacter\Intermediate\Build\Win64\UnrealEditor\Development\ArchVisCharacter\Definitions.ArchVisCharacter.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\ArchVisCharacter\Source\ArchVisCharacter\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\ArchVisCharacter\Intermediate\Build\Win64\UnrealEditor\Inc\ArchVisCharacter" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\ArchVisCharacter\Source" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Runtime\ArchVisCharacter\Source\ArchVisCharacter\Public" 

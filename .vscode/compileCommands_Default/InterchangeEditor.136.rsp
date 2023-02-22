@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\Interchange\Editor\Intermediate\Build\Win64\UnrealEditor\Development\InterchangeEditor\Definitions.InterchangeEditor.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\CoreUObject\SharedPCH.CoreUObject.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\CoreUObject\SharedPCH.CoreUObject.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\Interchange\Editor\Source\InterchangeEditor\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\InterchangeCore" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\Experimental\Interchange" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\Experimental\Interchange\Core\Public" 

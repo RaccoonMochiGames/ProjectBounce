@@ -1,7 +1,6 @@
 /FI "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\MeshLODToolset\Intermediate\Build\Win64\UnrealEditor\Development\MeshLODToolset\Definitions.MeshLODToolset.h" 
-/FI "\\StuHomeEven\HomeDrive6$\2003256\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
+/FI "C:\Users\redta\OneDrive - Abertay University\Documents\Unreal Projects\ProjectBounce\Intermediate\Build\Win64\ProjectBounceEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source" 
-/I "C:\Program Files\Epic Games\UE_5.0\Engine\Plugins\Experimental\MeshLODToolset\Source\MeshLODToolset\Private" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime" 
 /I "C:\Program Files\Epic Games\UE_5.0\Engine\Source\Runtime\CoreUObject\Public" 
