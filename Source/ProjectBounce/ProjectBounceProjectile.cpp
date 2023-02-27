@@ -49,7 +49,6 @@ void AProjectBounceProjectile::Tick(float DeltaSeconds)
 {
 
 
-
 }
 
 void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -73,6 +72,7 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		EnterRestState();
 	}
 
+	// Deletes a ball after being in rest state for a while
 	if(currentBounces <= -5)
 	{		
 		Destroy();
@@ -81,14 +81,7 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	if(bRestState)
 	{
 		// make it bounce in place
-		//ProjectileMovement->SetVelocityInLocalSpace(GetVelocity());
-		//ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 1000.0f));
-
-		//ProjectileMovement->AddForce(FVector(0.0f, 0.0f, 10000.0f));
-
 		ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 600.0f);
-
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, GetVelocity().ToString());
 	}
 
 }

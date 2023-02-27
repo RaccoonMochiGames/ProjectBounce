@@ -5,6 +5,7 @@
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/BoxComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/InputSettings.h"
 
@@ -35,6 +36,10 @@ AProjectBounceCharacter::AProjectBounceCharacter()
 	Mesh1P->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-0.5f, -4.4f, -155.7f));
 
+	// Create the hitbox for hitting tennis balls
+	ProjectileHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ProjectileHitBox"));
+	ProjectileHitBox->SetupAttachment(FirstPersonCameraComponent);
+	ProjectileHitBox->SetRelativeLocation(FVector(110.0f, 0.0f, -4.0f));
 }
 
 void AProjectBounceCharacter::BeginPlay()
@@ -55,8 +60,9 @@ void AProjectBounceCharacter::SetupPlayerInputComponent(class UInputComponent* P
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	// Bind fire event
+	// Bind fire event and hit event
 	PlayerInputComponent->BindAction("PrimaryAction", IE_Pressed, this, &AProjectBounceCharacter::OnPrimaryAction);
+	PlayerInputComponent->BindAction("SecondaryAction", IE_Pressed, this, &AProjectBounceCharacter::OnSecondaryAction);
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -78,6 +84,12 @@ void AProjectBounceCharacter::OnPrimaryAction()
 {
 	// Trigger the OnItemUsed Event
 	OnUseItem.Broadcast();
+}
+
+void AProjectBounceCharacter::OnSecondaryAction()
+{
+	// Get the nearest tennis ball and add velocity
+	GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
 }
 
 void AProjectBounceCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
