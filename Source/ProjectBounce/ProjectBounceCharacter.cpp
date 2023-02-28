@@ -80,6 +80,22 @@ void AProjectBounceCharacter::SetupPlayerInputComponent(class UInputComponent* P
 	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &AProjectBounceCharacter::LookUpAtRate);
 }
 
+void OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	if(OtherActor.class == ProjectBounceProjectile)
+	{
+		bProjectileInRange = true;
+	}
+}
+
+void OverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+{
+	if(OtherActor.class == ProjectBounceProjectile)
+	{
+		bProjectileInRange = false;
+	}
+}
+
 void AProjectBounceCharacter::OnPrimaryAction()
 {
 	// Trigger the OnItemUsed Event
@@ -89,7 +105,14 @@ void AProjectBounceCharacter::OnPrimaryAction()
 void AProjectBounceCharacter::OnSecondaryAction()
 {
 	// Get the nearest tennis ball and add velocity
-	GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
+	if(bProjectileInRange == true)
+	{
+		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("No Tennis ball in range..."));
+	}
 }
 
 void AProjectBounceCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
