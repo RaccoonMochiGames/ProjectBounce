@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{BBADC5CC-4B32-0957-9DD0-52AB74ED2D95}",
+	"EngineAssociation": "{6A2A6ED0-4012-F317-908D-5E96EA7A5FD7}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "ProjectBounce",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
