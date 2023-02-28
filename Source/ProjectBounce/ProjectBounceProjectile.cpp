@@ -93,6 +93,17 @@ void AProjectBounceProjectile::EnterRestState()
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Entering rest state..."));
 
 	// stop the projectiles velocity
-	ProjectileMovement->SetVelocityInLocalSpace(FVector(0.0f, 0.0f, 0.0f));
+	ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 0.0f);
 
+}
+
+void AProjectBounceProjectile::BallHit(FVector direction, float velocity)
+{
+	bRestState = false;
+	currentBounces = maxBounces;
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Player has hit the ball!"));
+
+	// stop the projectiles velocity
+	ProjectileMovement->Velocity = (direction * velocity);
 }

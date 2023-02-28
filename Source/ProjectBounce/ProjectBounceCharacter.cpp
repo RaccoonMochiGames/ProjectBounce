@@ -40,6 +40,9 @@ AProjectBounceCharacter::AProjectBounceCharacter()
 	ProjectileHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ProjectileHitBox"));
 	ProjectileHitBox->SetupAttachment(FirstPersonCameraComponent);
 	ProjectileHitBox->SetRelativeLocation(FVector(110.0f, 0.0f, -4.0f));
+
+	// Projectile not in range
+	bProjectileInRange = false;
 }
 
 void AProjectBounceCharacter::BeginPlay()
@@ -47,6 +50,9 @@ void AProjectBounceCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
+	// declare overlap events
+	ProjectileHitBox->OnComponentBeginOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapBegin); 
+	ProjectileHitBox->OnComponentEndOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapEnd); 
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -80,19 +86,25 @@ void AProjectBounceCharacter::SetupPlayerInputComponent(class UInputComponent* P
 	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &AProjectBounceCharacter::LookUpAtRate);
 }
 
-void OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void AProjectBounceCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
-	if(OtherActor.class == ProjectBounceProjectile)
+	if(OtherActor->IsA(AProjectBounceProjectile::StaticClass()))
 	{
 		bProjectileInRange = true;
+		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Tennis ball has come in range!"));
+
+		AProjectile = Cast<AProjectBounceProjectile>(OtherActor);
 	}
 }
 
-void OverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+void AProjectBounceCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if(OtherActor.class == ProjectBounceProjectile)
+	if(OtherActor->IsA(AProjectBounceProjectile::StaticClass()))
 	{
 		bProjectileInRange = false;
+		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Tennis ball has left range!"));
+
+		AProjectile = NULL;
 	}
 }
 
@@ -108,6 +120,14 @@ void AProjectBounceCharacter::OnSecondaryAction()
 	if(bProjectileInRange == true)
 	{
 		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
+
+		if(AProjectile != NULL)
+		{
+			FVector forwardVector = FirstPersonCameraComponent->GetForwardVector();
+			float velocity = 3000.0f;
+
+			AProjectile->BallHit(forwardVector, velocity);
+		}
 	}
 	else
 	{
