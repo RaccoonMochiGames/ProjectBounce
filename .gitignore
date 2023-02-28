@@ -65,3 +65,9 @@ ProjectBounce/Saved/
 Thumbs.db
 *.log
 *.tmp
+
+.cache
+*.akd
+*.prof
+*.validationcache
+*/Assets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset*
