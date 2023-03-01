@@ -124,9 +124,8 @@ void AProjectBounceCharacter::OnSecondaryAction()
 		if(AProjectile != NULL)
 		{
 			FVector forwardVector = FirstPersonCameraComponent->GetForwardVector();
-			float velocity = 3000.0f;
 
-			AProjectile->BallHit(forwardVector, velocity);
+			AProjectile->BallHit(forwardVector);
 		}
 	}
 	else

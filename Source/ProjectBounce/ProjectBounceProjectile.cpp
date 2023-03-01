@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ProjectBounceProjectile.h"
+#include "ProjectBounceCharacter.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
@@ -48,8 +49,7 @@ void AProjectBounceProjectile::BeginPlay()
 
 void AProjectBounceProjectile::Tick(float DeltaSeconds)
 {
-
-
+	// Update function
 }
 
 void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -61,16 +61,25 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 	}
 
+	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass))
+	{
+		// when ball hits player, make it slow down a lot and go back into rest state
+		//ProjectileMovement->Velocity = (GetVelocity() * 0.2f);
+	}
+
 	// only reduce bounces if it is hitting a flat surface
 	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
 	{
 		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), currentBounces));
 		currentBounces--;
 	}
+	else if(currentBounces < maxBounces)
+	{
+		// Make it go towards player or enemy?
+	}
 
 	if(currentBounces <= 0 && bRestState == false)
 	{		
-
 		EnterRestState();
 	}
 
@@ -100,8 +109,10 @@ void AProjectBounceProjectile::EnterRestState()
 
 }
 
-void AProjectBounceProjectile::BallHit(FVector direction, float velocity)
+void AProjectBounceProjectile::BallHit(FVector direction)
 {
+	float velocity;
+
 	bRestState = false;
 	currentBounces = maxBounces;
 
@@ -109,7 +120,9 @@ void AProjectBounceProjectile::BallHit(FVector direction, float velocity)
 
 	velocity = Rally(velocity);
 
-	// stop the projectiles velocity
+	GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+
+	// Give the projectile a new direction and speed
 	ProjectileMovement->Velocity = (direction * velocity);
 }
 
@@ -121,37 +134,31 @@ float AProjectBounceProjectile::Rally(float velocity)
 		case 0:
 			velocity = 2000.0f;
 			currentBounces = maxBounces;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 		case 1:
 			velocity = 2200.0f;
 			currentBounces = maxBounces;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 		case 2:
 			velocity = 2500.0f;
 			currentBounces = maxBounces + 1;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 		case 3:
 			velocity = 3000.0f;
 			currentBounces = maxBounces + 1;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 		case 4:
 			velocity = 3500.0f;
 			currentBounces = maxBounces + 2;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 		default:
 			velocity = 3500.0f;
 			currentBounces = maxBounces + 2;
-			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
 			return velocity;
 			break;
 	}
