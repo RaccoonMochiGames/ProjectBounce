@@ -34,6 +34,7 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 
 	// Custom projectile bounce variables
 	maxBounces = 2;
+	rallyCount = 0;
 
 	bRestState = false;
 }
@@ -63,12 +64,13 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	// only reduce bounces if it is hitting a flat surface
 	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
 	{
-		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: x: %d"), currentBounces));
+		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), currentBounces));
 		currentBounces--;
 	}
 
 	if(currentBounces <= 0 && bRestState == false)
 	{		
+
 		EnterRestState();
 	}
 
@@ -89,8 +91,9 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 void AProjectBounceProjectile::EnterRestState()
 {
 	bRestState = true;
+	rallyCount = 0;
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Entering rest state..."));
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Entering rest state..."));
 
 	// stop the projectiles velocity
 	ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 0.0f);
@@ -102,8 +105,54 @@ void AProjectBounceProjectile::BallHit(FVector direction, float velocity)
 	bRestState = false;
 	currentBounces = maxBounces;
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Player has hit the ball!"));
+	GEngine->AddOnScreenDebugMessage(2, 2.0f, FColor::Blue, TEXT("Player has hit the ball!"));
+
+	velocity = Rally(velocity);
 
 	// stop the projectiles velocity
 	ProjectileMovement->Velocity = (direction * velocity);
+}
+
+float AProjectBounceProjectile::Rally(float velocity)
+{
+	rallyCount++;
+	switch(rallyCount)
+	{
+		case 0:
+			velocity = 2000.0f;
+			currentBounces = maxBounces;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+		case 1:
+			velocity = 2200.0f;
+			currentBounces = maxBounces;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+		case 2:
+			velocity = 2500.0f;
+			currentBounces = maxBounces + 1;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+		case 3:
+			velocity = 3000.0f;
+			currentBounces = maxBounces + 1;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+		case 4:
+			velocity = 3500.0f;
+			currentBounces = maxBounces + 2;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+		default:
+			velocity = 3500.0f;
+			currentBounces = maxBounces + 2;
+			GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+			return velocity;
+			break;
+	}
 }
