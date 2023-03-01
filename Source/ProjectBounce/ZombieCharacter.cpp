@@ -12,12 +12,12 @@ AZombieCharacter::AZombieCharacter()
 
 
 
+	// Creates Cube mesh and and attaches to Capsule component
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
-
-
 	MeshComponent->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("/Engine/BasicShapes/Cube.Cube"))));
-
 	MeshComponent->SetupAttachment(GetCapsuleComponent());
+
+
 }
 
 // Called when the game starts or when spawned
@@ -25,11 +25,9 @@ void AZombieCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-
-
+	// uses AI controller to move towards player
 	PlayerCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-	FVector PlayerLocation = PlayerCharacter->GetActorLocation();
-	UE_LOG(LogTemp, Log, TEXT("Actor location: %s"), *PlayerLocation.ToString());
+
 	Cast<AAIController>(GetController())->MoveToActor(PlayerCharacter);
 
 	
@@ -40,8 +38,6 @@ void AZombieCharacter::BeginPlay()
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-
 
 }
 
