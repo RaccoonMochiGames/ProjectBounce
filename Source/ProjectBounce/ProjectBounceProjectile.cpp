@@ -34,7 +34,7 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	ProjectileMovement->bShouldBounce = true;
 
 	// Custom projectile bounce variables
-	maxBounces = 2;
+	maxBounces = 1;
 	rallyCount = 0;
 
 	bRestState = false;
@@ -63,8 +63,10 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 
 	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()) && !bRestState)
 	{
+		FVector direction;
+
 		// when ball hits player, make it slow down a lot and go back into rest state
-		ProjectileMovement->Velocity = (GetVelocity() * 0.3f);
+		ProjectileMovement->Velocity = -direction.GetSafeNormal(0.01f, GetVelocity()) * 500;
 		remainingBounces = 0;
 	}
 
@@ -79,18 +81,19 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	// only reduce bounces if it is hitting a flat surface
 	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
 	{
-		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), remainingBounces));
-		remainingBounces--;
 
 		if(remainingBounces <= 0 && bRestState == false)
 		{		
 			EnterRestState();
 		}
 
+		remainingBounces--;
+
+		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), remainingBounces));
 	}
-	else if(remainingBounces < maxBounces)
+	else if(remainingBounces <= 0)
 	{
-		// Make it go towards player or enemy?
+		remainingBounces = 1;
 	}
 
 	// Deletes a ball after being in rest state for a while
