@@ -44,7 +44,7 @@ void AProjectBounceProjectile::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	currentBounces = maxBounces;
+	remainingBounces = maxBounces;
 }
 
 void AProjectBounceProjectile::Tick(float DeltaSeconds)
@@ -61,30 +61,40 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 	}
 
-	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass))
+	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()) && !bRestState)
 	{
 		// when ball hits player, make it slow down a lot and go back into rest state
-		//ProjectileMovement->Velocity = (GetVelocity() * 0.2f);
+		ProjectileMovement->Velocity = (GetVelocity() * 0.3f);
+		remainingBounces = 0;
+	}
+
+	if(OtherActor->IsA(AProjectBounceProjectile::StaticClass()))
+	{
+		// when ball hits ball, make it hit like a player hit it
+		FVector direction = GetActorForwardVector();
+
+		Cast<AProjectBounceProjectile>(OtherActor)->BallHit(direction);
 	}
 
 	// only reduce bounces if it is hitting a flat surface
 	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
 	{
-		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), currentBounces));
-		currentBounces--;
+		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), remainingBounces));
+		remainingBounces--;
+
+		if(remainingBounces <= 0 && bRestState == false)
+		{		
+			EnterRestState();
+		}
+
 	}
-	else if(currentBounces < maxBounces)
+	else if(remainingBounces < maxBounces)
 	{
 		// Make it go towards player or enemy?
 	}
 
-	if(currentBounces <= 0 && bRestState == false)
-	{		
-		EnterRestState();
-	}
-
 	// Deletes a ball after being in rest state for a while
-	if(currentBounces <= -5)
+	if(remainingBounces <= -5)
 	{		
 		Destroy();
 	}
@@ -93,6 +103,11 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	{
 		// make it bounce in place
 		ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 600.0f);
+
+		if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()))
+		{
+			Destroy();
+		}
 	}
 
 }
@@ -111,16 +126,16 @@ void AProjectBounceProjectile::EnterRestState()
 
 void AProjectBounceProjectile::BallHit(FVector direction)
 {
-	float velocity;
+	float velocity = 0.1f;
 
 	bRestState = false;
-	currentBounces = maxBounces;
+	//remainingBounces = maxBounces;
 
 	GEngine->AddOnScreenDebugMessage(2, 2.0f, FColor::Blue, TEXT("Player has hit the ball!"));
 
 	velocity = Rally(velocity);
 
-	GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, currentBounces));
+	GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, remainingBounces));
 
 	// Give the projectile a new direction and speed
 	ProjectileMovement->Velocity = (direction * velocity);
@@ -133,32 +148,32 @@ float AProjectBounceProjectile::Rally(float velocity)
 	{
 		case 0:
 			velocity = 2000.0f;
-			currentBounces = maxBounces;
+			remainingBounces = maxBounces;
 			return velocity;
 			break;
 		case 1:
 			velocity = 2200.0f;
-			currentBounces = maxBounces;
+			remainingBounces = maxBounces;
 			return velocity;
 			break;
 		case 2:
 			velocity = 2500.0f;
-			currentBounces = maxBounces + 1;
+			remainingBounces = maxBounces + 1;
 			return velocity;
 			break;
 		case 3:
 			velocity = 3000.0f;
-			currentBounces = maxBounces + 1;
+			remainingBounces = maxBounces + 1;
 			return velocity;
 			break;
 		case 4:
 			velocity = 3500.0f;
-			currentBounces = maxBounces + 2;
+			remainingBounces = maxBounces + 2;
 			return velocity;
 			break;
 		default:
 			velocity = 3500.0f;
-			currentBounces = maxBounces + 2;
+			remainingBounces = maxBounces + 2;
 			return velocity;
 			break;
 	}
