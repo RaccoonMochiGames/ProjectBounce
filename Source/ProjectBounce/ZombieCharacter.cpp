@@ -3,14 +3,14 @@
 
 #include "ZombieCharacter.h"
 #include "Components/CapsuleComponent.h"
+#include "BehaviorTree/BlackboardComponent.h"
+
+#include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"
 // Sets default values
 AZombieCharacter::AZombieCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-
-
 
 	// Creates Cube mesh and and attaches to Capsule component
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
@@ -24,13 +24,6 @@ AZombieCharacter::AZombieCharacter()
 void AZombieCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	// uses AI controller to move towards player
-	PlayerCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
-
-	Cast<AAIController>(GetController())->MoveToActor(PlayerCharacter);
-
-	
 
 }
 
