@@ -7,7 +7,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Object.h"
-
+#include "BehaviorTree/Blackboard/BlackboardKeyType_Bool.h"
 UBTTask_FindPlayer::UBTTask_FindPlayer(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
     bCreateNodeInstance = true;
@@ -18,7 +18,7 @@ EBTNodeResult::Type UBTTask_FindPlayer::ExecuteTask(UBehaviorTreeComponent& Owne
 {
     const UBlackboardComponent* MyBlackboard = OwnerComp.GetBlackboardComponent();
     AAIController* MyController = OwnerComp.GetAIOwner();
-
+    bool test = MyController->LineOfSightTo(UGameplayStatics::GetPlayerCharacter(this, 0));
     if(!MyController || !MyBlackboard)
         return EBTNodeResult::Failed;
 
@@ -26,7 +26,15 @@ EBTNodeResult::Type UBTTask_FindPlayer::ExecuteTask(UBehaviorTreeComponent& Owne
     if(!Chr)
         return EBTNodeResult::Failed;
 
-	OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Object>("TargetActor",  UGameplayStatics::GetPlayerCharacter(this, 0));
 
-    return EBTNodeResult::Succeeded;
+
+    if(test)
+    {
+        OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Object>("TargetActor",  UGameplayStatics::GetPlayerCharacter(this, 0));
+          OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Bool>("HasLineofSight", test);
+        return EBTNodeResult::Succeeded;
+    }
+
+    return EBTNodeResult::Failed;
+
 }
