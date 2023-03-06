@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ProjectBounceProjectile.h"
+#include "ProjectBounceCharacter.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
@@ -34,6 +35,7 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 
 	// Custom projectile bounce variables
 	maxBounces = 2;
+	rallyCount = 0;
 
 	bRestState = false;
 }
@@ -42,13 +44,12 @@ void AProjectBounceProjectile::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	currentBounces = maxBounces;
+	remainingBounces = maxBounces;
 }
 
 void AProjectBounceProjectile::Tick(float DeltaSeconds)
 {
-
-
+	// Update function
 }
 
 void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -60,20 +61,40 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 	}
 
+	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()) && !bRestState)
+	{
+		// when ball hits player, make it slow down a lot and go back into rest state
+		ProjectileMovement->Velocity = (GetVelocity() * 0.3f);
+		remainingBounces = 0;
+	}
+
+	if(OtherActor->IsA(AProjectBounceProjectile::StaticClass()))
+	{
+		// when ball hits ball, make it hit like a player hit it
+		FVector direction = GetActorForwardVector();
+
+		Cast<AProjectBounceProjectile>(OtherActor)->BallHit(direction);
+	}
+
 	// only reduce bounces if it is hitting a flat surface
 	if(Hit.Normal == FVector(0.0f, 0.0f, 1.0f))
 	{
-		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: x: %d"), currentBounces));
-		currentBounces--;
-	}
+		GEngine->AddOnScreenDebugMessage(3, 15.0f, FColor::Red, FString::Printf(TEXT("Hit flat surface! Bounces left: %d"), remainingBounces));
+		remainingBounces--;
 
-	if(currentBounces <= 0 && bRestState == false)
-	{		
-		EnterRestState();
+		if(remainingBounces <= 0 && bRestState == false)
+		{		
+			EnterRestState();
+		}
+
+	}
+	else if(remainingBounces < maxBounces)
+	{
+		// Make it go towards player or enemy?
 	}
 
 	// Deletes a ball after being in rest state for a while
-	if(currentBounces <= -5)
+	if(remainingBounces <= -5)
 	{		
 		Destroy();
 	}
@@ -82,6 +103,11 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	{
 		// make it bounce in place
 		ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 600.0f);
+
+		if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()))
+		{
+			Destroy();
+		}
 	}
 
 }
@@ -89,21 +115,66 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 void AProjectBounceProjectile::EnterRestState()
 {
 	bRestState = true;
+	rallyCount = 0;
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Entering rest state..."));
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Entering rest state..."));
 
 	// stop the projectiles velocity
 	ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 0.0f);
 
 }
 
-void AProjectBounceProjectile::BallHit(FVector direction, float velocity)
+void AProjectBounceProjectile::BallHit(FVector direction)
 {
+	float velocity = 0.1f;
+
 	bRestState = false;
-	currentBounces = maxBounces;
+	//remainingBounces = maxBounces;
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("Player has hit the ball!"));
+	GEngine->AddOnScreenDebugMessage(2, 2.0f, FColor::Blue, TEXT("Player has hit the ball!"));
 
-	// stop the projectiles velocity
+	velocity = Rally(velocity);
+
+	GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, FString::Printf(TEXT("Rally %d: %d"), rallyCount, remainingBounces));
+
+	// Give the projectile a new direction and speed
 	ProjectileMovement->Velocity = (direction * velocity);
+}
+
+float AProjectBounceProjectile::Rally(float velocity)
+{
+	rallyCount++;
+	switch(rallyCount)
+	{
+		case 0:
+			velocity = 2000.0f;
+			remainingBounces = maxBounces;
+			return velocity;
+			break;
+		case 1:
+			velocity = 2200.0f;
+			remainingBounces = maxBounces;
+			return velocity;
+			break;
+		case 2:
+			velocity = 2500.0f;
+			remainingBounces = maxBounces + 1;
+			return velocity;
+			break;
+		case 3:
+			velocity = 3000.0f;
+			remainingBounces = maxBounces + 1;
+			return velocity;
+			break;
+		case 4:
+			velocity = 3500.0f;
+			remainingBounces = maxBounces + 2;
+			return velocity;
+			break;
+		default:
+			velocity = 3500.0f;
+			remainingBounces = maxBounces + 2;
+			return velocity;
+			break;
+	}
 }
