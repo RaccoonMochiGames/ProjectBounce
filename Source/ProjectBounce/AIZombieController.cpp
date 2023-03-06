@@ -7,6 +7,7 @@
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
+
 AAIZombieController::AAIZombieController(const FObjectInitializer & ObjectInitializer)
 {
     BBC = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackBoard Component"));
@@ -30,3 +31,6 @@ void AAIZombieController::OnPossess(APawn* InPawn)
         BTC->StartTree(*Chr->TreeAsset);
     }
 }
+
+
+
