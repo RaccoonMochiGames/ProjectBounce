@@ -94,6 +94,8 @@ void AProjectBounceCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp
 		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Tennis ball has come in range!"));
 
 		AProjectile = Cast<AProjectBounceProjectile>(OtherActor);
+						
+		OtherActor->CustomTimeDilation = 0.5f;
 	}
 }
 
@@ -103,6 +105,8 @@ void AProjectBounceCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedCompon
 	{
 		bProjectileInRange = false;
 		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Tennis ball has left range!"));
+
+		OtherActor->CustomTimeDilation = 1.0f;
 
 		AProjectile = NULL;
 	}
