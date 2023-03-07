@@ -19,14 +19,13 @@ EBTNodeResult::Type UBTTask_FindPlayer::ExecuteTask(UBehaviorTreeComponent& Owne
     const UBlackboardComponent* MyBlackboard = OwnerComp.GetBlackboardComponent();
     AAIController* MyController = OwnerComp.GetAIOwner();
     bool test = MyController->LineOfSightTo(UGameplayStatics::GetPlayerCharacter(this, 0));
+    
     if(!MyController || !MyBlackboard)
         return EBTNodeResult::Failed;
 
     AZombieCharacter* Chr = Cast<AZombieCharacter>(MyController->GetPawn());
     if(!Chr)
         return EBTNodeResult::Failed;
-
-
 
     if(test)
     {
