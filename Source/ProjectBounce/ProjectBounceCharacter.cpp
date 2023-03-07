@@ -53,6 +53,9 @@ void AProjectBounceCharacter::BeginPlay()
 	// declare overlap events
 	ProjectileHitBox->OnComponentBeginOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapBegin); 
 	ProjectileHitBox->OnComponentEndOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapEnd); 
+
+	// declare any necessary variables
+	iAmmoCount = 1;
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -114,28 +117,47 @@ void AProjectBounceCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedCompon
 
 void AProjectBounceCharacter::OnPrimaryAction()
 {
-	// Trigger the OnItemUsed Event
-	OnUseItem.Broadcast();
+	if(iAmmoCount > 0)
+	{
+		iAmmoCount--;
+
+		// Trigger the OnItemUsed Event
+		OnUseItem.Broadcast();
+	}
+	else
+	{
+			// Get the nearest tennis ball and add velocity
+		if(bProjectileInRange == true)
+		{
+			GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
+
+			if(AProjectile != NULL)
+			{
+				FVector forwardVector = FirstPersonCameraComponent->GetForwardVector();
+
+				AProjectile->BallHit(forwardVector);
+
+				if(FireAnimation != nullptr)
+				{
+					// Get the animation object for the arms mesh
+					UAnimInstance* AnimInstance = GetMesh1P()->GetAnimInstance();
+					if (AnimInstance != nullptr)
+					{
+						AnimInstance->Montage_Play(FireAnimation, 1.f);
+					}
+				}
+			}
+		}
+		else
+		{
+			GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("No Tennis ball in range..."));
+		}
+	}
 }
 
 void AProjectBounceCharacter::OnSecondaryAction()
 {
-	// Get the nearest tennis ball and add velocity
-	if(bProjectileInRange == true)
-	{
-		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Hitting Tennis ball!!!"));
 
-		if(AProjectile != NULL)
-		{
-			FVector forwardVector = FirstPersonCameraComponent->GetForwardVector();
-
-			AProjectile->BallHit(forwardVector);
-		}
-	}
-	else
-	{
-		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("No Tennis ball in range..."));
-	}
 }
 
 void AProjectBounceCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -204,4 +226,11 @@ bool AProjectBounceCharacter::EnableTouchscreenMovement(class UInputComponent* P
 	}
 	
 	return false;
+}
+
+void AProjectBounceCharacter::GainAmmo()
+{
+	iAmmoCount++;
+
+	// Tell weapon
 }

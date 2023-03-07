@@ -106,7 +106,7 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	// Deletes a ball after being in rest state for a while
 	if(remainingBounces <= -5)
 	{		
-		Destroy();
+		DestroyBall();
 	}
 
 	if(bRestState)
@@ -116,7 +116,7 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 
 		if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()))
 		{
-			Destroy();
+			DestroyBall();
 		}
 	}
 
@@ -200,4 +200,11 @@ float AProjectBounceProjectile::Rally(float velocity)
 			return velocity;
 			break;
 	}
+}
+
+void AProjectBounceProjectile::DestroyBall()
+{
+	Cast<AProjectBounceCharacter>(Player)->GainAmmo();
+
+	Destroy();
 }
