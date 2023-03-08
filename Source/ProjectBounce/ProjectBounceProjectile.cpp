@@ -2,6 +2,7 @@
 
 #include "ProjectBounceProjectile.h"
 #include "ProjectBounceCharacter.h"
+#include "ZombieCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
@@ -104,8 +105,13 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		remainingBounces = 0;
 	}
 
+	if(OtherActor->IsA(AZombieCharacter::StaticClass()))
+	{
+		GoTowardsPlayer();
+	}
+
 	// Deletes a ball after being in rest state for a while
-	if(remainingBounces <= -5)
+	if(remainingBounces <= -7)
 	{		
 		DestroyBall();
 	}
