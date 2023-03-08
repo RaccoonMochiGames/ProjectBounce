@@ -2,6 +2,7 @@
 
 #include "ProjectBounceProjectile.h"
 #include "ProjectBounceCharacter.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
@@ -33,6 +34,9 @@ AProjectBounceProjectile::AProjectBounceProjectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
+	// Get Reference to player character
+	Player = UGameplayStatics::GetPlayerCharacter(this, 0);
+
 	// Custom projectile bounce variables
 	maxBounces = 1;
 	rallyCount = 0;
@@ -45,6 +49,7 @@ void AProjectBounceProjectile::BeginPlay()
 	AActor::BeginPlay();
 
 	remainingBounces = maxBounces;
+	bJustSpawned = true;
 }
 
 void AProjectBounceProjectile::Tick(float DeltaSeconds)
@@ -61,14 +66,6 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 	}
 
-	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()) && !bRestState)
-	{
-		FVector direction;
-
-		// when ball hits player, make it slow down a lot and go back into rest state
-		ProjectileMovement->Velocity = -direction.GetSafeNormal(0.01f, GetVelocity()) * 500;
-		remainingBounces = 0;
-	}
 
 	if(OtherActor->IsA(AProjectBounceProjectile::StaticClass()))
 	{
@@ -94,12 +91,23 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	else if(remainingBounces <= 0)
 	{
 		remainingBounces = 1;
+
+		GoTowardsPlayer();
+	}
+	
+	if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()) && !bRestState)
+	{
+		FVector direction;
+
+		// when ball hits player, make it slow down a lot and go back into rest state
+		ProjectileMovement->Velocity = Hit.Normal * 500;
+		remainingBounces = 0;
 	}
 
 	// Deletes a ball after being in rest state for a while
 	if(remainingBounces <= -5)
 	{		
-		Destroy();
+		DestroyBall();
 	}
 
 	if(bRestState)
@@ -109,7 +117,7 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 
 		if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()))
 		{
-			Destroy();
+			DestroyBall();
 		}
 	}
 
@@ -142,6 +150,19 @@ void AProjectBounceProjectile::BallHit(FVector direction)
 
 	// Give the projectile a new direction and speed
 	ProjectileMovement->Velocity = (direction * velocity);
+}
+
+void AProjectBounceProjectile::GoTowardsPlayer()
+{
+	// Make projectile go towards player
+	FVector PlayerLocation;
+	FVector MovementDirection;
+
+	PlayerLocation = Player->GetActorLocation();
+	MovementDirection = PlayerLocation - GetActorLocation();
+	MovementDirection.Normalize();
+
+	ProjectileMovement->Velocity = MovementDirection * GetVelocity().Length();
 }
 
 float AProjectBounceProjectile::Rally(float velocity)
@@ -180,4 +201,16 @@ float AProjectBounceProjectile::Rally(float velocity)
 			return velocity;
 			break;
 	}
+}
+
+void AProjectBounceProjectile::DestroyBall()
+{
+	Destroy();
+}
+
+void AProjectBounceProjectile::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+
+    Cast<AProjectBounceCharacter>(Player)->GainAmmo();
 }

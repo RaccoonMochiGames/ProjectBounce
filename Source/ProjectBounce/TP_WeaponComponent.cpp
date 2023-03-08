@@ -2,6 +2,7 @@
 
 
 #include "TP_WeaponComponent.h"
+#include "Components/SphereComponent.h"
 #include "ProjectBounceCharacter.h"
 #include "ProjectBounceProjectile.h"
 #include "GameFramework/PlayerController.h"
@@ -15,6 +16,12 @@ UTP_WeaponComponent::UTP_WeaponComponent()
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
 }
 
+void UTP_WeaponComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AttachWeapon(Cast<AProjectBounceCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)));
+}
 
 void UTP_WeaponComponent::Fire()
 {
