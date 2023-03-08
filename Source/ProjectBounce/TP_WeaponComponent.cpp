@@ -14,7 +14,6 @@ UTP_WeaponComponent::UTP_WeaponComponent()
 {
 	// Default offset from the character location for projectiles to spawn
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
-
 }
 
 void UTP_WeaponComponent::BeginPlay()
@@ -48,8 +47,6 @@ void UTP_WeaponComponent::Fire()
 	
 			// Spawn the projectile at the muzzle
 			World->SpawnActor<AProjectBounceProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Spawning projectile"));
 		}
 	}
 	
@@ -92,8 +89,5 @@ void UTP_WeaponComponent::AttachWeapon(AProjectBounceCharacter* TargetCharacter)
 		// Register so that Fire is called every time the character tries to use the item being held
 		Character->OnUseItem.AddDynamic(this, &UTP_WeaponComponent::Fire);
 	}
-
-	//Character->GetTennisBallReference(TennisBallReference);
-
 }
 

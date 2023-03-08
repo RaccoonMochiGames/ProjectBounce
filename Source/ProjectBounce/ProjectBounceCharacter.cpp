@@ -252,8 +252,4 @@ void AProjectBounceCharacter::ReturnBallSpeed(AActor* Ball)
 	Ball->CustomTimeDilation = 1.0f;
 }
 
-void AProjectBounceCharacter::GetTennisBallReference(UStaticMeshComponent* TennisBall)
-{
-	TennisBallReference = TennisBall;
-}
 
