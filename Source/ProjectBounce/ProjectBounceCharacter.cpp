@@ -4,6 +4,7 @@
 #include "ProjectBounceProjectile.h"
 #include "ZombieCharacter.h"
 #include "Animation/AnimInstance.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
@@ -138,7 +139,8 @@ void AProjectBounceCharacter::HurtOverlapBegin(UPrimitiveComponent* OverlappedCo
 {
 	if(OtherActor->IsA(AZombieCharacter::StaticClass()))
 	{
-		LaunchCharacter(FVector(0.0f, 0.0f, 300), true, true);
+		GetCharacterMovement()->DoJump(false);
+		LaunchCharacter(FVector(OtherActor->GetActorForwardVector().X * 100, OtherActor->GetActorForwardVector().Y * 100, 0.0f), true, true);
 		LoseHealth();
 		return; 
 	}
