@@ -2,6 +2,7 @@
 
 #include "ProjectBounceCharacter.h"
 #include "ProjectBounceProjectile.h"
+#include "ZombieCharacter.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -36,6 +37,11 @@ AProjectBounceCharacter::AProjectBounceCharacter()
 	Mesh1P->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-0.5f, -4.4f, -155.7f));
 
+	// Create hurt trigger box for player
+	PlayerHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("PlayerHitBox"));
+	PlayerHitBox->SetupAttachment(GetCapsuleComponent());
+	PlayerHitBox->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+
 	// Create the hitbox for hitting tennis balls
 	ProjectileHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("ProjectileHitBox"));
 	ProjectileHitBox->SetupAttachment(FirstPersonCameraComponent);
@@ -54,8 +60,11 @@ void AProjectBounceCharacter::BeginPlay()
 	ProjectileHitBox->OnComponentBeginOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapBegin); 
 	ProjectileHitBox->OnComponentEndOverlap.AddDynamic(this, &AProjectBounceCharacter::OnOverlapEnd); 
 
+	PlayerHitBox->OnComponentBeginOverlap.AddDynamic(this, &AProjectBounceCharacter::HurtOverlapBegin); 
+
 	// declare any necessary variables
-	iAmmoCount = 1;
+	AmmoCount = 1;
+	PlayerHealth = 3;
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
@@ -125,11 +134,21 @@ void AProjectBounceCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedCompon
 	}
 }
 
+void AProjectBounceCharacter::HurtOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	if(OtherActor->IsA(AZombieCharacter::StaticClass()))
+	{
+		LaunchCharacter(FVector(0.0f, 0.0f, 300), true, true);
+		LoseHealth();
+		return; 
+	}
+}
+
 void AProjectBounceCharacter::OnPrimaryAction()
 {
-	if(iAmmoCount > 0)
+	if(AmmoCount > 0)
 	{
-		iAmmoCount--;
+		AmmoCount--;
 
 		// Trigger the OnItemUsed Event
 		OnUseItem.Broadcast();
@@ -242,7 +261,7 @@ bool AProjectBounceCharacter::EnableTouchscreenMovement(class UInputComponent* P
 
 void AProjectBounceCharacter::GainAmmo()
 {
-	iAmmoCount++;
+	AmmoCount++;
 
 	// Tell weapon
 }
@@ -250,6 +269,19 @@ void AProjectBounceCharacter::GainAmmo()
 void AProjectBounceCharacter::ReturnBallSpeed(AActor* Ball)
 {
 	Ball->CustomTimeDilation = 1.0f;
+}
+
+void AProjectBounceCharacter::LoseHealth()
+{
+	PlayerHealth--;
+
+	LaunchCharacter(FVector(0.0f, 0.0f, 500), true, true);
+
+	if(PlayerHealth <= 0)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Player has died!"));
+		//Travel();
+	}
 }
 
 
