@@ -282,7 +282,8 @@ void AProjectBounceCharacter::LoseHealth()
 	if(PlayerHealth <= 0)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Player has died!"));
-		//Travel();
+
+		UGameplayStatics::OpenLevel(GetWorld(), "MainMenu");
 	}
 }
 
