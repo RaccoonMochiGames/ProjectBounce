@@ -32,7 +32,7 @@ EBTNodeResult::Type UBTTask_FindPatrolLocation::ExecuteTask(UBehaviorTreeCompone
 
 
     FVector Result;
-    if(GetRandomPointInRadius(Chr->GetActorLocation(), 300000, Result))
+    if(GetRandomPointInRadius(Chr->GetActorLocation(), 300, Result))
     {
         OwnerComp.GetBlackboardComponent()->SetValue<UBlackboardKeyType_Vector>("PatrolLocation", Result);
         return EBTNodeResult::Succeeded;

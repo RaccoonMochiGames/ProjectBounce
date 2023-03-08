@@ -6,6 +6,11 @@ UTP_PickUpComponent::UTP_PickUpComponent()
 {
 	// Setup the Sphere Collision
 	SphereRadius = 32.f;
+
+	//RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+	//TennisBallComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TennisBall"));
+	//TennisBallComponent->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("/Engine/BasicShapes/Sphere.Sphere"))));
+	//TennisBallComponent->SetupAttachment(GetOwner()->GetRootComponent()->AttachParent->GetOwner());
 }
 
 void UTP_PickUpComponent::BeginPlay()
