@@ -204,7 +204,14 @@ float AProjectBounceProjectile::Rally(float velocity)
 
 void AProjectBounceProjectile::DestroyBall()
 {
-	Cast<AProjectBounceCharacter>(Player)->GainAmmo();
+	//Cast<AProjectBounceCharacter>(Player)->GainAmmo();
 
 	Destroy();
+}
+
+void AProjectBounceProjectile::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+
+    Cast<AProjectBounceCharacter>(Player)->GainAmmo();
 }
