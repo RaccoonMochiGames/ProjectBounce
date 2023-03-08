@@ -98,7 +98,14 @@ void AProjectBounceCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp
 
 		AProjectile = Cast<AProjectBounceProjectile>(OtherActor);
 						
-		OtherActor->CustomTimeDilation = 0.5f;
+		if(Cast<AProjectBounceProjectile>(OtherActor)->bJustSpawned)
+		{
+			Cast<AProjectBounceProjectile>(OtherActor)->bJustSpawned = false;
+		}
+		else
+		{
+			OtherActor->CustomTimeDilation = 0.5f;
+		}
 	}
 }
 
@@ -109,7 +116,10 @@ void AProjectBounceCharacter::OnOverlapEnd(UPrimitiveComponent* OverlappedCompon
 		bProjectileInRange = false;
 		GEngine->AddOnScreenDebugMessage(4, 15.0f, FColor::Green, TEXT("Tennis ball has left range!"));
 
-		OtherActor->CustomTimeDilation = 1.0f;
+		//OtherActor->CustomTimeDilation = 1.0f;
+		AimedAtBall = OtherActor;
+
+		ReturnBallSpeed(AimedAtBall);
 
 		AProjectile = NULL;
 	}
@@ -136,6 +146,8 @@ void AProjectBounceCharacter::OnPrimaryAction()
 				FVector forwardVector = FirstPersonCameraComponent->GetForwardVector();
 
 				AProjectile->BallHit(forwardVector);
+
+				ReturnBallSpeed(AimedAtBall);
 
 				if(FireAnimation != nullptr)
 				{
@@ -234,3 +246,14 @@ void AProjectBounceCharacter::GainAmmo()
 
 	// Tell weapon
 }
+
+void AProjectBounceCharacter::ReturnBallSpeed(AActor* Ball)
+{
+	Ball->CustomTimeDilation = 1.0f;
+}
+
+void AProjectBounceCharacter::GetTennisBallReference(UStaticMeshComponent* TennisBall)
+{
+	TennisBallReference = TennisBall;
+}
+

@@ -49,6 +49,7 @@ void AProjectBounceProjectile::BeginPlay()
 	AActor::BeginPlay();
 
 	remainingBounces = maxBounces;
+	bJustSpawned = true;
 }
 
 void AProjectBounceProjectile::Tick(float DeltaSeconds)
@@ -204,8 +205,6 @@ float AProjectBounceProjectile::Rally(float velocity)
 
 void AProjectBounceProjectile::DestroyBall()
 {
-	//Cast<AProjectBounceCharacter>(Player)->GainAmmo();
-
 	Destroy();
 }
 
