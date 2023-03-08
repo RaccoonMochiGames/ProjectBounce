@@ -30,7 +30,7 @@ void AZombieCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FindComponentByClass<UStaticMeshComponent>()->OnComponentHit.AddDynamic(this, &AZombieCharacter::OnHit);
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AZombieCharacter::OnHit);
 
 
 	health = maxHealth;	
@@ -66,7 +66,8 @@ void AZombieCharacter::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, U
 	
 	if(projectile)
 	{
-		LaunchCharacter(FVector(projectile->GetVelocity().X * 0.5f, projectile->GetVelocity().Y * 0.5f, 300), true, true);
+		GetCharacterMovement()->DoJump(false);
+		LaunchCharacter(FVector(projectile->GetVelocity().X * 1.5f, projectile->GetVelocity().Y * 1.5f, 500), true, true);
 		FindComponentByClass<UStaticMeshComponent>()->SetSimulatePhysics(true);
 
 		isDead = true;
