@@ -18,9 +18,6 @@ AZombieCharacter::AZombieCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Creates Cube mesh and and attaches to Capsule component
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
-	MeshComponent->SetStaticMesh(Cast<UStaticMesh>(StaticLoadObject(UStaticMesh::StaticClass(), nullptr, TEXT("/Engine/BasicShapes/Cylinder.Cylinder"))));
-	MeshComponent->SetupAttachment(GetCapsuleComponent());
 	
 	GetCharacterMovement()->MaxWalkSpeed = 200.0f;
 
@@ -33,7 +30,7 @@ void AZombieCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	MeshComponent->OnComponentHit.AddDynamic(this, &AZombieCharacter::OnHit);
+	FindComponentByClass<UStaticMeshComponent>()->OnComponentHit.AddDynamic(this, &AZombieCharacter::OnHit);
 
 
 	health = maxHealth;	
@@ -43,6 +40,15 @@ void AZombieCharacter::BeginPlay()
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if(isDead)
+	{
+		DeathTimer += DeltaTime;
+		if(DeathTimer >= DeathDelay)
+		{
+			Destroy();
+		}
+	}
 
 }
 
@@ -61,8 +67,9 @@ void AZombieCharacter::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, U
 	if(projectile)
 	{
 		LaunchCharacter(FVector(projectile->GetVelocity().X * 0.5f, projectile->GetVelocity().Y * 0.5f, 300), true, true);
-		MeshComponent->SetSimulatePhysics(true);
-		FEvent::Wait(1000, true);
+		FindComponentByClass<UStaticMeshComponent>()->SetSimulatePhysics(true);
+
+		isDead = true;
 	}
 	
 	
