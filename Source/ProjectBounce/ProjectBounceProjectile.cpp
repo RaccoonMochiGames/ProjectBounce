@@ -166,9 +166,10 @@ void AProjectBounceProjectile::GoTowardsPlayer()
 
 	PlayerLocation = Player->GetActorLocation();
 	MovementDirection = PlayerLocation - GetActorLocation();
+	MovementDirection += FVector(0.0f, 0.0f, MovementDirection.Length() * 0.3f);
 	MovementDirection.Normalize();
 
-	ProjectileMovement->Velocity = MovementDirection * GetVelocity().Length();
+	ProjectileMovement->Velocity = MovementDirection * (GetVelocity().Length());
 }
 
 float AProjectBounceProjectile::Rally(float velocity)
