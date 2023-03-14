@@ -111,20 +111,23 @@ void AProjectBounceProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Other
 	}
 
 	// Deletes a ball after being in rest state for a while
+	/*
 	if(remainingBounces <= -7)
 	{		
 		DestroyBall();
 	}
-
+	*/
 	if(bRestState)
 	{
 		// make it bounce in place
 		ProjectileMovement->Velocity = FVector(0.0f, 0.0f, 600.0f);
 
+	/*
 		if(OtherActor->IsA(AProjectBounceCharacter::StaticClass()))
 		{
 			DestroyBall();
 		}
+	*/
 	}
 
 }
